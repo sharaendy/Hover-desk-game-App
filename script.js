@@ -17,15 +17,15 @@ function getRandomColor() {
   return colors[index];
 }
 
-function setColor(value) {
-  const element = value;
+function setColor(e) {
+  const element = e.target;
   const color = getRandomColor();
   element.style.backgroundColor = color;
   element.style.boxShadow = `0 0 2px ${color}, 0 0 10px ${color}`;
 }
 
-function removeColor(value) {
-  const element = value;
+function removeColor(e) {
+  const element = e.target;
   element.style.backgroundColor = '#1d1d1d';
   element.style.boxShadow = '0 0 2px #1d1d1d';
 }
@@ -33,14 +33,7 @@ function removeColor(value) {
 for (let i = 0; i < SQUARES_NUMBER; i += 1) {
   const square = document.createElement('div');
   square.classList.add('square');
-
-  square.addEventListener('mouseover', () => {
-    setColor(square);
-  });
-
-  square.addEventListener('mouseleave', () => {
-    removeColor(square);
-  });
-
+  square.addEventListener('mouseover', setColor);
+  square.addEventListener('mouseleave', removeColor);
   board.append(square);
 }
